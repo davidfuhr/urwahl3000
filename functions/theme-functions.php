@@ -5,8 +5,8 @@ START FUNCTIONS
 *********************/
 
 add_action( 'after_setup_theme', 'kr8_startup', 15 );
-add_action( 'after_setup_theme', 'kr8_theme_support',16 );
-add_action( 'after_setup_theme', 'custom_theme_features',17 );
+add_action( 'after_setup_theme', 'kr8_theme_support', 16 );
+add_action( 'after_setup_theme', 'custom_theme_features', 17 );
 
 function kr8_startup() {
 	remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -155,25 +155,25 @@ THEME SUPPORT
 function kr8_theme_support() {
 
 	// wp thumbnails
-	add_theme_support('post-thumbnails');
+	add_theme_support( 'post-thumbnails' );
 
 	// default thumb size
-	if( apply_filters('kr8_thumbnail_default', '__return_true') ) {
-		set_post_thumbnail_size(150, 150, false);
-		add_image_size( 'medium', 400, 600,false );
+	if ( apply_filters( 'kr8_thumbnail_default', '__return_true' ) ) {
+		set_post_thumbnail_size( 150, 150, false );
+		add_image_size( 'medium', 400, 600, false );
 		add_image_size( 'large', 800, 1200, false );
 		add_image_size( 'titelbild', 850, 450, true );
-		
-		update_option('thumbnail_size_w', 150);
-		update_option('thumbnail_size_h', 150);
-		update_option('medium_size_w', 400);
-		update_option('medium_size_h', 600);
-		update_option('large_size_w', 800);
-		update_option('large_size_h', 1200);
+
+		update_option( 'thumbnail_size_w', 150 );
+		update_option( 'thumbnail_size_h', 150 );
+		update_option( 'medium_size_w', 400 );
+		update_option( 'medium_size_h', 600 );
+		update_option( 'large_size_w', 800 );
+		update_option( 'large_size_h', 1200 );
 	}
-	
+
 	// rss thingy
-	add_theme_support('automatic-feed-links');
+	add_theme_support( 'automatic-feed-links' );
 
 	// wp menus
 	add_theme_support( 'menus' );
@@ -186,6 +186,61 @@ function kr8_theme_support() {
 			'nav-portal' => __( 'Links in der Kopfzeile', '' ) // portal
 		)
 	);
+
+	// add color palette for the block editor
+	// see https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+	add_theme_support( 'editor-color-palette', [
+			[
+					'name'  => __( 'Pink', 'kr8theme' ),
+					'slug'  => 'pink',
+					'color' => '#fa0089',
+			],
+			[
+					'name'  => __( 'Rot', 'kr8theme' ),
+					'slug'  => 'red',
+					'color' => '#ff242f',
+			],
+			[
+					'name'  => __( 'Gelb', 'kr8theme' ),
+					'slug'  => 'yellow',
+					'color' => '#ffee00',
+			],
+			[
+					'name'  => __( 'Sehr helles Grün', 'kr8theme' ),
+					'slug'  => 'light-green',
+					'color' => '#e4f8df',
+			],
+			[
+					'name'  => __( 'Grün', 'kr8theme' ),
+					'slug'  => 'green',
+					'color' => '#5dae59',
+			],
+			[
+					'name'  => __( 'Sehr dunkles Grün', 'kr8theme' ),
+					'slug'  => 'dark-green',
+					'color' => '#0a350a',
+			],
+			[
+					'name'  => __( 'Helles Blau', 'kr8theme' ),
+					'slug'  => 'light-blue',
+					'color' => '#5ebce9',
+			],
+			[
+					'name'  => __( 'Weiß', 'kr8theme' ),
+					'slug'  => 'white',
+					'color' => '#fff',
+			],
+			[
+					'name'  => __( 'Helles Grey', 'kr8theme' ),
+					'slug'  => 'light-grey',
+					'color' => '#e6e6e6',
+			],
+			[
+					'name'  => __( 'Dunkles Grau', 'kr8theme' ),
+					'slug'  => 'dark-grey',
+					'color' => '#888888',
+			],
+	] );
 } /* end kr8 theme support */
 
 function kr8_image_title($attr, $attachment, $size) {
@@ -356,7 +411,8 @@ ADMIN PREVIEW
 
 //Editor-Stylesheet
 function kr8_add_editor_styles() {
-    add_editor_style( 'lib/css/editor.css' );
+	add_theme_support( 'editor-styles' );
+	add_editor_style( 'lib/css/editor.css' );
 }
 add_action( 'after_setup_theme', 'kr8_add_editor_styles' );
 
